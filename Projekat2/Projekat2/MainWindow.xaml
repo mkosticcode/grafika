@@ -1,0 +1,92 @@
+﻿<Window x:Class="Projekat2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="800">
+    <Grid Name="grid1">
+        <DockPanel Height="40" VerticalAlignment="Top" HorizontalAlignment="Left"   >
+            <Menu DockPanel.Dock ="Top">
+                <MenuItem Header="_Extra options ">
+                    <MenuItem Header="_Sakrivanje/prikazivanje neaktivnog dela"  Click="MenuItem_Click_1" ></MenuItem>
+                    <MenuItem Header="_Promeni boju Switch" Click="MenuItem_Click_2" ></MenuItem>
+                    <MenuItem Header="_Promeni boju vodova" Click="MenuItem_Click_3" ></MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Extra options2 ">
+                    <MenuItem Header="_Sakrij ispod 1"  Click="MenuItem_Click_4" ></MenuItem>
+                    <MenuItem Header="_Sakrij izmedju 1 i 2"  Click="MenuItem_Click_5" ></MenuItem>
+                    <MenuItem Header="_Sakrij vece od 2"  Click="MenuItem_Click_6" ></MenuItem>
+                </MenuItem>
+               
+            </Menu>
+            <Label  Content="NODES" Foreground="Blue" FontWeight="Bold"  Height="30"/>
+            <Label  Content="SWITCHES" Foreground="Crimson" FontWeight="Bold" Height="30" />
+            <Label  Content="SUBSTATIONS" Foreground="Black" FontWeight="Bold" Height="30"/>
+        </DockPanel>
+        <Viewport3D ClipToBounds="True"  Name="viewport1" MouseLeftButtonDown="viewport1_MouseLeftButtonDown"
+                     MouseLeftButtonUp="viewport1_MouseLeftButtonUp" MouseMove="viewport1_MouseMove"
+                     MouseWheel="viewport1_MouseWheel" MouseRightButtonDown="viewport1_MouseRightButtonDown"  >
+
+            <Viewport3D.Camera>
+                <PerspectiveCamera Position = "1,1,2.5" LookDirection = "0,0,-1"/>
+            </Viewport3D.Camera>
+
+            <Viewport3D.Children>
+
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <AmbientLight/>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+
+
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <Model3DGroup x:Name="MapaPodloga">
+
+                            <GeometryModel3D x:Name="slika">
+                                <GeometryModel3D.Material>
+                                    <DiffuseMaterial>
+                                        <DiffuseMaterial.Brush>
+                                            <ImageBrush ImageSource="Images/map.jpg"/>
+                                        </DiffuseMaterial.Brush>
+                                    </DiffuseMaterial>
+                                </GeometryModel3D.Material>
+
+                                <GeometryModel3D.Geometry>
+                                    <MeshGeometry3D Positions="0,0,0 2,0,0 0,2,0 2,2,0" TriangleIndices="0,1,2 2,1,3" TextureCoordinates="0,2 2,2 0,0 2,0" />
+                                </GeometryModel3D.Geometry>
+                            </GeometryModel3D>
+
+                            <Model3DGroup.Transform>
+                                <Transform3DGroup>
+                                    <TranslateTransform3D x:Name="translacija" OffsetX="0" OffsetY="0" OffsetZ="0"/>
+                                    <ScaleTransform3D x:Name="skaliranje" ScaleX="1" ScaleY="1" ScaleZ="1"/>
+                                    <RotateTransform3D x:Name="rotiranje">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Axis="-1,0,0" Angle="20" x:Name="Xosa" />
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D>
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Axis="0,1,0" Angle="0" x:Name="Yosa" />
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </Model3DGroup.Transform>
+
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+
+
+
+
+
+            </Viewport3D.Children>
+
+        </Viewport3D>
+    </Grid>
+</Window>
